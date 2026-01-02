@@ -84,4 +84,3 @@ adas-soc-systems/
     ├── kernel_questions.md
     ├── system_design_questions.md
     └── self_introduction.md
-
