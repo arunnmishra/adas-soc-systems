@@ -1,6 +1,6 @@
 # adas-soc-systems
-A repo for revising fundamentals and advanced concepts related to high performance , scalable system useful for automotive or IOT applications. 
-Below is the Repo structure. 
+This repository demonstrates the progression from modern C++ systems programming to Linux/QNX-based SoC platform software and ADAS system design, focusing on performance, safety, and real-world constraints.
+
 adas-soc-systems/
 │
 ├── README.md

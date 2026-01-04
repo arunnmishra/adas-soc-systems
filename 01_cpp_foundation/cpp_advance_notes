@@ -1,0 +1,15 @@
+//Overall Concepts C++ memory model
+Stack vs heap
+Object lifetime
+Padding & alignment
+POD vs non-POD
+sizeof, alignof
+
+memory_layout.cpp
+    sizeof
+    Stack vs heap
+    Object contiguity
+
+padding_alignment.cpp
+    Padding & alignment
+    Cache lines and performance (cache misses/friendliness)
