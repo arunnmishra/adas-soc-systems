@@ -46,6 +46,14 @@ int main(void) {
         cout << "Element Vec2 " << i << ": " << &((*vec2)[i]) << endl;
     }
 
+    //allignof
+    cout << "allignof " << alignof(ClassWithPadding1) << " bytes" << endl;
+   
+    //offsetof
+    cout << "Offset of a in ClassWithPadding2: " << offsetof(ClassWithPadding2, b) << " bytes" << endl;
+    cout << "Offset of b in ClassWithPadding2: " << offsetof(ClassWithPadding2, c) << " bytes" << endl;
+    cout << "Offset of c in ClassWithPadding2: " << offsetof(ClassWithPadding2, a) << " bytes" << endl;
+
     delete heapObj;
     delete vec2;
 
