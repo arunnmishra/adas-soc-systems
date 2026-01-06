@@ -56,6 +56,11 @@ int main(void) {
 
     delete heapObj;
     delete vec2;
+    //POD = data only, no behavior, safe to treat as raw memory. like C structs
+    //non-POD = has constructors, destructors, virtual functions, etc. 
+    //e.g       struct NonPOD {
+    //              std::string name;  // owns memory
+    //          };
 
     return 0;
 }
