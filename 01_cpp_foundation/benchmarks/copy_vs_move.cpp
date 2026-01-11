@@ -1,70 +1,99 @@
 #include<iostream>
 #include<vector>
+#include <cstring> 
 
 using namespace std;
-/*
- */
 
-class coordinates{
-    int x1,x2,x3;
+//Copy constructor-assignment: understanding the use and the penality
+
+class BigBuffer{
+    vector<int> buff;
+    string buff_name;
+    char *pImpl;            //next make it ==> std::unique_ptr
 public:
-    int get_sum(void){
-        return x1+x2+x3;
-    };
-    //default constructor 
-    coordinates(){
-        cout<<"construtor coordinates"<<endl;
+    //constructor
+    BigBuffer(size_t n=1000000, string s="default buffer"):buff(n), buff_name(s){
+        pImpl = new char[sizeof(s) + 1];
+        std::strcpy(pImpl,s.c_str());
+        cout<<"Constructed."<<endl;
     }
-    coordinates(int a, int b, int c): x1(a),x2{b}, x3{c}{
-        cout<<"3 param construtor coordinates"<<endl;
+    //copy constructor
+    BigBuffer(const BigBuffer &other):buff(other.buff),buff_name(other.buff_name){
+        //deep copy, first allocate new memory same as other, then copy 
+        pImpl = new char[sizeof(other) + 1];
+        std::strcpy(pImpl,other.pImpl);
+        cout<<"copy constructed"<<endl;
     }
-    coordinates(const coordinates &obj): x1{obj.x1}, x2{obj.x2}, x3{obj.x3} {
-        cout<<"copy construtor coordinates"<<endl;
+    //copy assginment 
+    BigBuffer &operator=(const BigBuffer & rhs){ // A=B => A.operator=(B) 
+        if(&rhs != this){
+            buff      = rhs.buff;       //current object already updated.
+            buff_name = rhs.buff_name;  //if we forget proper copy for all member it will be ignore 
+            delete[] pImpl;
+            pImpl = new char[std::strlen(rhs.pImpl) + 1];//deep copy the pImpl
+            std::strcpy(pImpl,rhs.pImpl);
+        }
+        cout<<"copy Assigned"<<endl;
+        return *this; //return for efficeicy or chaining 
+    }
+
+    //move constructor, to eliminate the copy penality wherever psossible to transfer ownership
+    BigBuffer(BigBuffer &&r_value):buff(std::move(r_value.buff)),buff_name(std::move(r_value.buff_name)),
+                                    pImpl(r_value.pImpl){
+        r_value.pImpl = nullptr;
+        cout<<"moved consstructed."<<endl;
+    }
+
+    //move assignment, saves heavylifting by transfering ownership and avoidign copy in case assingment
+    BigBuffer & operator=(BigBuffer &&r_value) noexcept{
+        if (this != &r_value) {
+            buff = std::move(r_value.buff);
+            buff_name =std::move(r_value.buff_name);
+            pImpl = r_value.pImpl;
+            r_value.pImpl = nullptr;
+        }
+        cout<<"moved assigned."<<endl;
+        return *this;
+    }
+
+    //destructor 
+    ~BigBuffer(){
+        delete[] pImpl;
+        cout<<this->buff_name<<" Destructed!"<<endl;
     }
 };
 
-class echo_data{
-    vector<coordinates> d{10}; //this will call 10x constructor 
-    coordinates c{2,4,6}; //this will call a 3 parma constructor 
-    char *dp = "data_point1";
-public:
-    string get_dp_name(){
-        return dp;
-    };
-    //default constructor 
-    echo_data(){
-        cout<<"construtor echo_data"<<endl;
-    }
+void func_A(BigBuffer b){
+    cout<<"call by value also calls copy=> penality again"<<endl;
+}
+BigBuffer func_B(){
 
-    //default constructor 
-    echo_data(const echo_data & obj): d{obj.d}, c{obj.c}, dp{obj.dp} {
-        cout<<"copy construtor echo_data"<<endl;
-    }
-
-    //default assignment 
-};
-
+    cout<<"return by value also calls copy=> penality again"<<endl;
+    BigBuffer b(100000);
+    return b;
+}
 
 int main(void){
-    echo_data *data1 = new echo_data();
-    echo_data *data2 =data1; //here constructor is not called will see where all copy constructor is called
+    BigBuffer b1(10000000, "buffer#1");       //big b1 buffer. normal constructor shall be called 
+    BigBuffer b2{b1};   //copy constructor shall be called
+    BigBuffer b3(100);  //new small buffer
+    b3 = b2;            //copy assignment shall be called , 
+                        //Unintentional copies of large objects are dangerous
+                        //out copy constructor shall be efficient or better move to move semantics when ownership transffered 
+                        //to avoid this penality
+    cout<<"------ while passing or returning by value ---------"<<endl;
+    func_A(b3);         //call by value, again copy, copy constructed
+    b3 = func_B();      //Again return by value a penality ==> possible copy assignment unless RVO (C++17)
+    
+    cout<<"------ while adding to container ---------"<<endl;
+    vector<BigBuffer> v;
+    v.push_back(b3);    //here one more copy constructor
 
-    echo_data d1;
-    cout<<"****************"<<endl;
-    echo_data d2{d1}; //copy construtor shall call. not clear if copy constructor of echo_data is not defined , 
-                      //then coordinates copy constructor is called , if deined then normal constructor is called ?
+    cout<<"------ move will make life better for ownership transfer ---------"<<endl;
+    BigBuffer b4(std::move(b3));  //now it will call move construct 
+    b4 = std::move(b2);           //and move assignment, they are by-default unless you implement for pIMPL things 
+    cout<<"------ efficient container with move ---------"<<endl;
+    v.push_back(std::move(b4)); 
 
-    //Where all copy called 
-    /*
-    Most surprising / dangerous copies
-   ↓
-    5. catch (Type e) by value
-    4. throw expr;  (copy of thrown object)
-    3. Parameter of type std::function<T>
-    2. Returning big object from getter (T getX() const)
-    1. Adding many elements to vector → reallocation
-    ↓
-    Least surprising
-    */ 
     return 0;
 }
