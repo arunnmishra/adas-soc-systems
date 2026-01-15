@@ -13,3 +13,11 @@ memory_layout.cpp
 padding_alignment.cpp
     Padding & alignment
     Cache lines and performance (cache misses/friendliness)
+
+
+Concurrency & Memory Model (C++11–17)
+    Data races
+    Atomics
+    False sharing
+    Lock-free basics
+    Cache coherence
