@@ -22,10 +22,15 @@ public:
     }
 
     void set_mapper_name(const string &N){ // not so good API in modern CPP, const blocks move
-        mapper_name = N;
+        mapper_name = N;                   //now N can not be moved
     }
-    void set_mapper_name1( string N){ // modern best practice , why ?
-        mapper_name = move(N);
+    
+    void set_mapper_name1(string &N){      // not so good API in modern CPP, const blocks move
+        mapper_name = move(N);             // now N can be moved, but API took ownership , usually not intentional
+    }
+
+    void set_mapper_name2( string N){ // modern best practice
+        mapper_name = move(N);        //pass by value and move , compiler optimize 
     }
 
 };
@@ -38,7 +43,6 @@ int main (void){
     M1.set_mapper_name("1st Mapper");
     cout<<"--------------------------------"<<endl;
     M1.set_mapper_name1("1st Mapper");
-
 
     return 0;
 }
