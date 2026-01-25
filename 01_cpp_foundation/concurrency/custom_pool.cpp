@@ -2,7 +2,7 @@
 #include <cstdint>
 #include <new>
 
-class FixedBlockPool {
+class FixedBlockPool {      
     struct FreeNode { FreeNode* next; };
 
     FreeNode* free_list;
@@ -34,7 +34,7 @@ public:
     }
 
     void deallocate(void* p) {
-        auto* node = static_cast<FrxeeNode*>(p);
+        auto* node = static_cast<FreeNode*>(p);
         node->next = free_list;
         free_list  = node;
     }
@@ -73,6 +73,7 @@ make_pool_object(FixedBlockPool& pool, Args&&... args)
 
 struct Msg {
     int id;
+    int padding;
     Msg(int i) : id(i) {
         std::cout << "Msg constructed\n";
     }
@@ -93,4 +94,4 @@ int main() {
     // - m1 / m2 go out of scope
     // - destructor called
     // - memory returned to pool
-}
+    }
