@@ -1,6 +1,8 @@
 #include <cstddef>
 #include <cstdint>
 #include <new>
+#include <memory>
+#include <iostream>
 
 class FixedBlockPool {      
     struct FreeNode { FreeNode* next; };
@@ -40,7 +42,6 @@ public:
     }
 };
 
-
 template<typename T>
 struct PoolDeleter {
     FixedBlockPool* pool;
@@ -51,8 +52,6 @@ struct PoolDeleter {
         pool->deallocate(p);  // return block
     }
 };
-
-#include <memory>
 
 template<typename T, typename... Args>
 std::unique_ptr<T, PoolDeleter<T>>
@@ -69,7 +68,6 @@ make_pool_object(FixedBlockPool& pool, Args&&... args)
     );
 }
 
-#include <iostream>
 
 struct Msg {
     int id;
@@ -94,4 +92,4 @@ int main() {
     // - m1 / m2 go out of scope
     // - destructor called
     // - memory returned to pool
-    }
+}
