@@ -24,6 +24,14 @@ struct Msg {
     }
 };
 
+/*
+API Parameter Design Rule 
+1- pass by value 
+2- pass by const refernece
+3- pass by refernece 
+4- pass by R-value reference 
+5- Template forwarding Refernece (either L or R value )
+*/
 void log(const std::string& s){
     std::cout<<"Lvalue log: "<<s<<std::endl;
 }
@@ -33,7 +41,7 @@ void log(std::string&& s){
 
 template<typename T>
 void wrapper(T&& s) {
-    log(s);    // perfect forwarding
+    log(std::forward<T>(s));    // perfect forwarding. when using template code always keep in mind about perfect forwarding else we will loose value category
 }
 
 int main() {

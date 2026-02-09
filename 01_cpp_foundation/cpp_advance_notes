@@ -21,3 +21,21 @@ Concurrency & Memory Model (C++11–17)
     False sharing
     Lock-free basics
     Cache coherence
+
+Next for week#2 - 
+API parameter design rules
+    take by value
+    take by const&
+    take by T&&
+    pass ownership vs borrow
+
+std::span and non-owning views
+    why it exists
+    why pointer+size is weaker
+    how it enforces contracts
+Const + move interactions
+    why const T&& is almost useless
+    why const disables moves
+Triviality & standard-layout
+    why embedded cares
+    DMA, IPC, serialization safety
