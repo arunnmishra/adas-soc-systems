@@ -1,4 +1,0 @@
-C:/Users/arunn/prj/adas-soc-systems/02_service_framework/someip/build/CMakeFiles/someip_core.dir
-C:/Users/arunn/prj/adas-soc-systems/02_service_framework/someip/build/CMakeFiles/someip_example.dir
-C:/Users/arunn/prj/adas-soc-systems/02_service_framework/someip/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/arunn/prj/adas-soc-systems/02_service_framework/someip/build/CMakeFiles/ZERO_CHECK.dir
