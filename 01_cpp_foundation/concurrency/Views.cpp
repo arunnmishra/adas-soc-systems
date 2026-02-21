@@ -6,7 +6,7 @@
 #include <span>
 
 
-//Non-Owning Access to existing memory with explicit bounds
+//Non-Owning Access(read only or modify) to existing memory with explicit bounds
 
 template<typename T>
 void display_data(std::span<T> d)

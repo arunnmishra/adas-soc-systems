@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\arunn\prj\adas-soc-systems\02_service_framework\someip\core\src\deserializer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\arunn\prj\adas-soc-systems\02_service_framework\someip\core\src\dispatcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\arunn\prj\adas-soc-systems\02_service_framework\someip\core\src\endpoint_udp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\arunn\prj\adas-soc-systems\02_service_framework\someip\core\src\header.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\arunn\prj\adas-soc-systems\02_service_framework\someip\core\src\message.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\arunn\prj\adas-soc-systems\02_service_framework\someip\core\src\serializer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\arunn\prj\adas-soc-systems\02_service_framework\someip\service\service.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\arunn\prj\adas-soc-systems\02_service_framework\someip\core\include\header.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\arunn\prj\adas-soc-systems\02_service_framework\someip\core\include\MemPool.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\arunn\prj\adas-soc-systems\02_service_framework\someip\core\include\message.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\arunn\prj\adas-soc-systems\02_service_framework\someip\core\include\owned_msg.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\arunn\prj\adas-soc-systems\02_service_framework\someip\core\include\queue.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\arunn\prj\adas-soc-systems\02_service_framework\someip\core\include\ResponseWriter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\arunn\prj\adas-soc-systems\02_service_framework\someip\core\include\serializer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\arunn\prj\adas-soc-systems\02_service_framework\someip\core\include\ServiceRegistry.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\arunn\prj\adas-soc-systems\02_service_framework\someip\core\include\SomeIpService.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\arunn\prj\adas-soc-systems\02_service_framework\someip\core\include\types.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\arunn\prj\adas-soc-systems\02_service_framework\someip\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{35016FAB-A730-304D-85F8-20D28066A6CD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{88628E66-31C1-35F2-A65F-FFB0061306B1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
